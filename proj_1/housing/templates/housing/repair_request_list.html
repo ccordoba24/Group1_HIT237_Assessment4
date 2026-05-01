@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Repair Requests</title>
+</head>
+<body>
+    <h1>Repair Requests</h1>
+
+    <p><a href="{% url 'repair-request-create' %}">Create New Repair Request</a></p>
+
+    {% if requests %}
+        <ul>
+            {% for request in requests %}
+                <li>
+                    <a href="{% url 'repair-request-detail' request.pk %}">
+                        <strong>{{ request.title }}</strong>
+                    </a>
+                    - {{ request.status }} - {{ request.dwelling.address }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No repair requests found.</p>
+    {% endif %}
+</body>
+</html>
